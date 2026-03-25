@@ -1,1 +1,1 @@
-Hello, this is the Front Page of the site!
+Hello, this is the [FrontPage] of the site!
