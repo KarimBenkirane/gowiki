@@ -91,10 +91,18 @@ func redirectHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	http.HandleFunc("/", redirectHandler)
+	fs := http.FileServer(http.Dir("static"))
+	http.HandleFunc("/static/", func(w http.ResponseWriter, r *http.Request) {
+		r.URL.Path = r.URL.Path[len("/static/"):]
+		fs.ServeHTTP(w, r)
+	})
+
 	http.HandleFunc("/view/", makeHandler(viewHandler))
 	http.HandleFunc("/edit/", makeHandler(editHandler))
 	http.HandleFunc("/save/", makeHandler(saveHandler))
+
+	http.HandleFunc("/", redirectHandler)
+
 	log.Println("Server running on port 8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

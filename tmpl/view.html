@@ -1,5 +1,19 @@
-<h1>{{.Title}}</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-<p>[<a href="/edit/{{.Title}}">edit</a>]</p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/style.css">
+    <title>View {{.Title}}</title>
+</head>
 
-<div>{{printf "%s" .Body}}</div>
+<body>
+    <div class="content-box">
+        <h1>{{.Title}}</h1>
+        <p>[<a href="/edit/{{.Title}}" class="nav-link">edit</a>]</p>
+        <div>{{printf "%s" .Body}}</div>
+    </div>
+</body>
+
+</html>
